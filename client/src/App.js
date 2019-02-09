@@ -3,15 +3,20 @@ import "./App.css"
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Home from "./pages/Home";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
+import {Home, Scores} from "./pages/Scores";
 import Nav from "./components/Nav";
 
-
+// function App() {
+//   return (
+//     <div>
+//       <Nav />
+//       <Scores />
+//     </div>
+//   );
+// }
 firebase.initializeApp({
-
+  apiKey: "AIzaSyBuiLxMFiSJImCr9v2JYP5AUM_IEbnU8QY",
+  authDomain: "memory-game-a1fa3.firebaseapp.com",
 })
 
 class App extends Component {
@@ -46,12 +51,13 @@ class App extends Component {
           <Router>
           <div>
             <Nav />
+            {/* <Scores /> */}
             <Switch>
          
               <Route exact path="/" component={Home} />
-              <Route exact path="/books" component={Books} />
-              <Route exact path="/books/:id" component={Detail} />
-              <Route component={NoMatch} />
+              <Route path="/scores" component={Scores} />
+            
+            
             </Switch>
           </div>
         </Router>
@@ -67,4 +73,5 @@ class App extends Component {
   }
 }
 
-export default App
+
+export default App;
