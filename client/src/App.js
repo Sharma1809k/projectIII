@@ -3,8 +3,9 @@ import "./App.css"
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {Home, Scores} from "./pages/Scores";
+import {Home,Game,Scores} from "./pages/Scores";
 import Nav from "./components/Nav";
+
 
 // function App() {
 //   return (
@@ -55,8 +56,8 @@ class App extends Component {
             <Switch>
          
               <Route exact path="/" component={Home} />
-              <Route path="/scores" component={Scores} />
-            
+              <Route path="/Game" component={Game} />
+              <Route path="/Scores" component={Scores} />
             
             </Switch>
           </div>

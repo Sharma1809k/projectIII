@@ -4,8 +4,8 @@ import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, FormBtn } from "../../components/Form";
-
+import "./style.css";
+import Wrapper from "../../components/wrapper";
 class Scores extends Component {
   // Setting our component's initial state
   state = {
@@ -60,57 +60,38 @@ class Scores extends Component {
  
   render() {
     return (
+      <Wrapper>
       <Container fluid>
-        <Row>
-          <Col size="md-6">
+       
+          
  
-            <form>
-              <Input
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                name="username"
-                placeholder="username (required)"
-              />
-              <Input
-                value={this.state.score}
-                onChange={this.handleInputChange}
-                name="score"
-                placeholder="score (required)"
-              />
- 
-              <FormBtn
-                disabled={!(this.state.score && this.state.username)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Book
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
+         
+            
               <h1>High Scores</h1>
-            </Jumbotron>
+           
             {this.state.scores.length ? (
               <List>
                 {this.state.scores.map(score => {
                   return (
-                    <ListItem key={score._id}>
+                   
+                    <marquee behavior = "scroll" direction= "up" scrollamount= "1">
                       <a href={"/books/" + score._id}>
                         <strong>
-                          {score.username} by {score.score}
+                          {score.username} {score.score}
                         </strong>
                       </a>
-                      <DeleteBtn onClick={() => this.deleteScore(score._id)} />
-                    </ListItem>
+                      </marquee>
+                      
+                   
                   );
                 })}
               </List>
             ) : (
               <h3>No Results to Display</h3>
             )}
-          </Col>
-        </Row>
+         
       </Container>
+      </Wrapper>
     );
   }
  }
