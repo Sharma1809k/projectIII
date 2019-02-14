@@ -14,7 +14,12 @@ export default {
     return axios.delete("/api/scores/" + id);
   },
   // Saves a book to the database
-  saveScore: function(scoreData) {
+  saveName: function(scoreData) {
     return axios.post("/api/scores", scoreData);
+  
+  },
+  saveScore: function(scoreData) {
+    return axios.put("/api/scores", scoreData);
   }
+  
 };
