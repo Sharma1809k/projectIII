@@ -23,7 +23,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.Score
-      .findOneAndUpdate({ username: req.params.id  }, req.body)
+      .findOneAndUpdate({ username: req.body.username}, {score: req.body.score})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

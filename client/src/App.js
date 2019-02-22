@@ -16,8 +16,8 @@ import Nav from "./components/Nav";
 //   );
 // }
 firebase.initializeApp({
-  apiKey: "AIzaSyBuiLxMFiSJImCr9v2JYP5AUM_IEbnU8QY",
-  authDomain: "memory-game-a1fa3.firebaseapp.com",
+  apiKey: "AIzaSyD0Nf7DI_LR20Xy9_uqCIYBMaFL_1AWaOM",
+  authDomain: "my-1st-firebase-user-auth.firebaseapp.com",
 })
 
 class App extends Component {
@@ -27,7 +27,6 @@ class App extends Component {
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
