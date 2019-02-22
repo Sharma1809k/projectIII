@@ -17,6 +17,8 @@ class Scores extends Component {
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
     this.loadScores();
+    let scoreSong = new Audio("./scoreSong.mp3");
+    scoreSong.play();
   }
  
   // Loads all books  and sets them to this.state.books

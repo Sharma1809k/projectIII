@@ -19,7 +19,7 @@ export default {
   
   },
   saveScore: function(scoreData) {
-    return axios.put("/api/scores", scoreData);
+    return axios.put("/api/scores/scores", scoreData);
   }
   
 };
