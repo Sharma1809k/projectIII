@@ -5,9 +5,9 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import "./style.css";
+import firebase from "firebase";
 import Wrapper from "../../components/wrapper";
-
-
+import Nav from "../../components/Nav";
 
 let scoreSong = new Audio("./scoreSong.mp3");
 
@@ -24,7 +24,6 @@ class Scores extends Component {
   componentDidMount() {
     this.musicToggle();
     this.loadScores();
-
 
   }
 
@@ -80,24 +79,37 @@ class Scores extends Component {
       isPlaying = true;
     }
 
-
     this.setState({ isPlaying })
   };
 
-
-
-
   render() {
     return (
+      
       <Wrapper>
+        <Nav> <nav className="navbar navbar-dark bg-primary">
+        <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
+      <a className="navbar-brand" href="/">
+        Memory Game
+     </a></div>
+   
+  <img className = "high" src = "./highScores.gif" />
+     
+       <form class="form-inline">
+  
+       <button className = "back"><a href="/Game">◀</a></button>
+      
+       <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
+             
+        </form>
+      </nav></Nav>
+      
         <Container fluid>
 
-
-
-
-
-          <h1>High Scores</h1>
-          <button onClick={this.musicToggle}>Music</button>
+      <Row>
+      <Col size="md-4"><img className = "spider" src = "./spider.jpg" /></Col>
+      <Col size="md-1"/>
+        <Col size="md-5">
+   
           {this.state.scores.length ? (
             <List>
               {this.state.scores.map(score => {
@@ -110,15 +122,17 @@ class Scores extends Component {
                       </strong>
                     </a>
                   </marquee>
-
-
+  
                 );
               })}
             </List>
           ) : (
-              <h3>No Results to Display</h3>
+              <h1>No Results to Display</h1>
             )}
-
+ 
+    </Col>
+    <Col size="md-2"/>
+     </Row>
         </Container>
       </Wrapper>
     );
