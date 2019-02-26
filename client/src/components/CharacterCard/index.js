@@ -11,7 +11,7 @@ function Charactercard(props) {
             <div className="images">
                 <img alt={name} src={image} />
             </div>
-            <div className="hero">{name} </div>
+            {/* <div className="hero">{name} </div> */}
 
         </div>
     );

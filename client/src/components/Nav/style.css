@@ -1,10 +1,12 @@
 
-.profile {
-    width: 40px;
-    height: 40px;
-    margin : 5px;
-  
+  .Nav{
+    width : 100%;
+    margin-bottom: 20px;
+
   }
   .signOut {
     margin : 5px;
+  }
+  button {
+    margin :5px;
   }
