@@ -7,7 +7,9 @@ import Points from "../../components/Points"
 import TopScore from "../../components/TopScore"
 import firebase from "firebase";
 import API from "../../utils/API";
-import Nav from "../../components/Nav";
+//import Nav from "../../components/Nav";
+import Paper from '@material-ui/core/Paper';
+import PaperSheet from "../../components/box4MessageInGame/box4MessageInGame"
 
 let themeSong = new Audio("./avengsong.mp3");
 class Game extends Component {
@@ -192,7 +194,7 @@ class Game extends Component {
 
         return (
             <Wrapper>
-                  <Nav> <nav className="navbar navbar-dark navy bg-primary">
+                  {/* <Nav> <nav className="navbar navbar-dark navy bg-primary">
                  <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
       <a className="navbar-brand" href="/">
         Memory Game
@@ -204,13 +206,19 @@ class Game extends Component {
        <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
       
         </form>
-      </nav></Nav>
+      </nav></Nav> */}
+                <PaperSheet>
+                {this.state.message}
+
+                </PaperSheet>
+
               <div className= "board">
  
-                <TopScore> Score: {this.state.score} | | Top Score: {this.state.topScore}<p>View <a href="/Scores"   >Top Scores </a> </p></TopScore>
+                <TopScore> Score: {this.score} | | Top Score: {this.topScore}<p>View <a href="/Scores"   >Top Scores </a> </p></TopScore>
                 </div>
 
                 {deal}
+                 <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
 
             </Wrapper>
         );

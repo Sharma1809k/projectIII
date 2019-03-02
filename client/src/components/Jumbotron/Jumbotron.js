@@ -20,9 +20,7 @@ function PaperSheet(props) {
  return (
    <div>
      <Paper className={classes.root} elevation={1}>
-       {/* <Typography variant="h5" component="h3">
-         This is a sheet of paper.
-       </Typography> */}
+      
         <Typography>Welcome {firebase.auth().currentUser.displayName} </Typography>
        <Typography>Click on  <a href="/Game"   >CONTINUE</a> to play the game!!!</Typography>
 

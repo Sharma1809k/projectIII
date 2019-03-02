@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 //import IconButton from '@material-ui/core/IconButton';
 //import MenuIcon from '@material-ui/icons/Menu';
 import ImageAvatars from "../avimg/avatars";
-import TextButtons from "../navButton/navButton";
+//import TextButtons from "../navButton/navButton";
 //import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
@@ -43,12 +43,12 @@ function ButtonAppBar(props) {
 
           </ImageAvatars>
           <div className= "signOut">
-       <TextButtons><a href="/">Go back</a></TextButtons>
+       <Button><a href="/">Go back</a></Button>
           
             {/* <button  onClick={() => firebase.auth().signOut()}>Sign out!</button> */}
 
             {/* <Button onClick={() =>Route exact path="/" component={Home}}  </Button> */}
-            <TextButtons  onClick={() => firebase.auth().signOut()}>Sign out!</TextButtons>
+            <Button  onClick={() => firebase.auth().signOut()}>Sign out!</Button>
           </div>
         </Toolbar>
       </AppBar>

@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-import { Col, Row, Container } from "../../components/Grid";
+//import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import "./style.css";
 import firebase from "firebase";
 import Wrapper from "../../components/wrapper";
 import Nav from "../../components/Nav";
+import PaperSheet from "../../components/box4MessageInScore/box4MessageInScore"
+
 
 let scoreSong = new Audio("./scoreSong.mp3");
 
@@ -85,58 +87,15 @@ class Scores extends Component {
   render() {
     return (
       
-      <Wrapper>
-        <Nav> <nav className="navbar navbar-dark bg-primary">
-        <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
-      <a className="navbar-brand" href="/">
-        Memory Game
-     </a></div>
-   
-  <img className = "high" src = "./highScores.gif" />
-     
-       <form class="form-inline">
+      <PaperSheet>
+                    
+      </PaperSheet>
   
-       <button className = "back"><a href="/Game">◀</a></button>
-      
-       <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
-             
-        </form>
-      </nav></Nav>
-      
-        <Container fluid>
+    )
+    
 
-      <Row>
-      <Col size="md-4"><img className = "spider" src = "./spider.jpg" /></Col>
-      <Col size="md-1"/>
-        <Col size="md-5">
-   
-          {this.state.scores.length ? (
-            <List>
-              {this.state.scores.map(score => {
-                return (
-
-                  <marquee behavior="scroll" direction="up" scrollamount="1">
-                    <a href={"/books/" + score._id}>
-                      <strong>
-                        {score.username} {score.score}
-                      </strong>
-                    </a>
-                  </marquee>
-  
-                );
-              })}
-            </List>
-          ) : (
-              <h1>No Results to Display</h1>
-            )}
- 
-    </Col>
-    <Col size="md-2"/>
-     </Row>
-        </Container>
-      </Wrapper>
-    );
   }
 }
+    
 
 export default Scores;
