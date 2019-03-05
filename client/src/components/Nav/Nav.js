@@ -43,12 +43,12 @@ function ButtonAppBar(props) {
 
           </ImageAvatars>
           <div className= "signOut">
-       <TextButtons><a href="/">Go back</a></TextButtons>
+             <buttons><a href="/">Go back</a></buttons>
           
-            {/* <button  onClick={() => firebase.auth().signOut()}>Sign out!</button> */}
+             <Button  onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></Button> 
 
-            {/* <Button onClick={() =>Route exact path="/" component={Home}}  </Button> */}
-            <TextButtons  onClick={() => firebase.auth().signOut()}>Sign out!</TextButtons>
+             {/* <Button onClick={() =>Route exact path="/" component={Home}}  </Button>  */}
+            {/* <TextButtons  onClick={() => firebase.auth().signOut()}>Sign out!</TextButtons> */}
           </div>
         </Toolbar>
       </AppBar>

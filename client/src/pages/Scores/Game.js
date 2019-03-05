@@ -8,6 +8,7 @@ import TopScore from "../../components/TopScore"
 import firebase from "firebase";
 import API from "../../utils/API";
 import Nav from "../../components/Nav";
+import { Paper } from "@material-ui/core";
 
 let themeSong = new Audio("./avengsong.mp3");
 class Game extends Component {
@@ -192,19 +193,19 @@ class Game extends Component {
 
         return (
             <Wrapper>
-                  <Nav> <nav className="navbar navbar-dark navy bg-primary">
+                  <Paper className="navbar navbar-dark navy bg-primary">
                  <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
       <a className="navbar-brand" href="/">
-        Memory Game
+        {/* Memory Game */}
      </a></div>
      <h3>{this.state.message}</h3>
        <form class="form-inline">
   
-       <button className = "back"><a href="/">◀</a></button>
-       <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
+       {/* <button className = "back"><a href="/">◀</a></button> */}
+       {/* <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button> */}
       
         </form>
-      </nav></Nav>
+      </Paper>
               <div className= "board">
  
                 <TopScore> Score: {this.state.score} | | Top Score: {this.state.topScore}<p>View <a href="/Scores"   >Top Scores </a> </p></TopScore>

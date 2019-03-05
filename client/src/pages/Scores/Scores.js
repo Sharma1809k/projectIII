@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-import { Col, Row, Container } from "../../components/Grid";
+//import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import "./style.css";
 import firebase from "firebase";
 import Wrapper from "../../components/wrapper";
 import Nav from "../../components/Nav";
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+
 
 let scoreSong = new Audio("./scoreSong.mp3");
 
@@ -86,29 +91,31 @@ class Scores extends Component {
     return (
       
       <Wrapper>
-        <Nav> <nav className="navbar navbar-dark bg-primary">
+        <Paper className="navbar navbar-dark bg-primary">
         <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
       <a className="navbar-brand" href="/">
-        Memory Game
+        {/* Memory Game */}
      </a></div>
    
   <img className = "high" src = "./highScores.gif" />
      
-       <form class="form-inline">
+       {/* <form class="form-inline">
   
        <button className = "back"><a href="/Game">◀</a></button>
       
        <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
              
-        </form>
-      </nav></Nav>
+        </form> */}
+      </Paper>
       
-        <Container fluid>
+        <Grid container>
 
-      <Row>
-      <Col size="md-4"><img className = "spider" src = "./spider.jpg" /></Col>
-      <Col size="md-1"/>
-        <Col size="md-5">
+      {/* <Row> */}
+      {/* <Col size="md-4"> */}
+      <img className = "spider" src = "./spider.jpg" />
+      {/* </Col> */}
+      {/* <Col size="md-1"/> */}
+        {/* <Col size="md-5"> */}
    
           {this.state.scores.length ? (
             <List>
@@ -130,10 +137,10 @@ class Scores extends Component {
               <h1>No Results to Display</h1>
             )}
  
-    </Col>
-    <Col size="md-2"/>
-     </Row>
-        </Container>
+    {/* </Col> */}
+    {/* <Col size="md-2"/> */}
+     {/* </Row> */}
+        </ Grid >
       </Wrapper>
     );
   }
