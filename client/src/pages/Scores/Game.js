@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import CharacterCard from "../../components/CharacterCard";
 import Wrapper from "../../components/wrapper";
-import Title from "../../components/Title";
+import Wr from "../../components/wr";
 import Characters from "./Characters.json";
-import Points from "../../components/Points"
 import TopScore from "../../components/TopScore"
 import firebase from "firebase";
 import API from "../../utils/API";
-import Nav from "../../components/Nav";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
+
 
 let themeSong = new Audio("./avengsong.mp3");
+
 class Game extends Component {
     state = {
         Characters,
@@ -32,9 +40,11 @@ class Game extends Component {
         API.saveName({
             username: firebase.auth().currentUser.displayName,
             score: 0
+
         })
             .then(res => this.scores())
             .catch(err => console.log(err));
+
     }
 
     arrayShuffle = () => {
@@ -48,6 +58,7 @@ class Game extends Component {
             _characters[newPos] = temp;
         }
         return _characters;
+
     };
 
     handleClick = (id) => {
@@ -86,7 +97,6 @@ class Game extends Component {
             topScore = score;
             message = "😎 You are correct";
             clicked = [...this.state.clicked, id];
-
         }
 
         if (score === 12) {
@@ -98,9 +108,7 @@ class Game extends Component {
             isbasic = false;
             isadvanced1 = true;
             deal = Characters.Characters.round2;
-
         }
-
 
         if (score === 22) {
             score = 22;
@@ -115,12 +123,13 @@ class Game extends Component {
         }
 
         this.setState({ deal, score, topScore, clicked, message, isbasic, isadvanced1, isadvanced2 })
-    };
 
+    };
 
     musicToggle = () => {
         let isPlaying = this.state.isPlaying;
         
+
         if (isPlaying === true) {
             themeSong.pause();
             isPlaying = false;
@@ -130,17 +139,22 @@ class Game extends Component {
             isPlaying = true;
         }
 
+
         this.setState({ isPlaying })
     };
 
     scoreSave = (_score) => {
 
         API.saveScore(
+
             {
                 username: this.state.user,
+
                 score: _score
             }
+
         )
+
             .then(res => this.scores())
             .catch(err => console.log(err));
     };
@@ -166,7 +180,6 @@ class Game extends Component {
         } else if (isadvanced1 === true) {
             deal = this.state.Characters.Characters.round2.map(character => (
 
-
                 <CharacterCard
                     handleClick={this.handleClick}
                     id={character.id}
@@ -180,38 +193,55 @@ class Game extends Component {
         if (isadvanced2 === true) {
             deal = this.state.Characters.Characters.round3.map(character => (
 
-
                 <CharacterCard
                     handleClick={this.handleClick}
                     id={character.id}
                     name={character.name}
                     image={character.image}
+
                 />
+
             ))
         }
 
         return (
             <Wrapper>
-                  <Nav> <nav className="navbar navbar-dark navy bg-primary">
-                 <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
-      <a className="navbar-brand" href="/">
+       
+           <div className="nav">
+           <AppBar style={{ background: '#2E3B55' }} position="static">
+        <Toolbar>
+       
+          <Typography variant="h6" color="inherit" >
+          <Button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></Button>
+          <a  href="/">
         Memory Game
-     </a></div>
-     <h3>{this.state.message}</h3>
-       <form class="form-inline">
-  
-       <button className = "back"><a href="/">◀</a></button>
-       <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
+     </a>
+          </Typography> 
+    
+          <TopScore> Score: {this.state.score} | | Top Score: {this.state.topScore}<p>View <a href="/Scores"   >Top Scores </a> </p></TopScore>
+     <div className= "signOut">
+     <Grid container justify="center" alignItems="center">
+     <Button className = "back"><a href="/">◀◀◀</a> </Button>
+      <Avatar alt="" src={firebase.auth().currentUser.photoURL} />
+    
+    
+     
+          <Button onClick={() => firebase.auth().signOut()} className= "signOut" color="inherit">Log Out</Button>
+          </Grid> </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+    <Wr>
+    <div>
+      <Paper  className= "paper">
       
-        </form>
-      </nav></Nav>
-              <div className= "board">
- 
-                <TopScore> Score: {this.state.score} | | Top Score: {this.state.topScore}<p>View <a href="/Scores"   >Top Scores </a> </p></TopScore>
-                </div>
-
+        <Typography component="p">
+        <h4>{this.state.message}</h4>
+        </Typography>
+      </Paper>
+    </div>
                 {deal}
-
+                </Wr>
             </Wrapper>
         );
     }

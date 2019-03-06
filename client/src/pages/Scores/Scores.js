@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
-import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import { List} from "../../components/List";
 import "./style.css";
 import firebase from "firebase";
 import Wrapper from "../../components/wrapper";
-import Nav from "../../components/Nav";
+import Wr from "../../components/wr";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
 
 let scoreSong = new Audio("./scoreSong.mp3");
 
@@ -32,7 +36,6 @@ class Scores extends Component {
     API.getScores()
       .then(res =>
         this.setState({ scores: res.data, username: "", score: "" })
-
       )
       .catch(err => console.log(err));
   };
@@ -82,47 +85,52 @@ class Scores extends Component {
     this.setState({ isPlaying })
   };
 
+
+
+
   render() {
     return (
       
       <Wrapper>
-        <Nav> <nav className="navbar navbar-dark bg-primary">
-        <div> <button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></button>
-      <a className="navbar-brand" href="/">
-        Memory Game
-     </a></div>
-   
-  <img className = "high" src = "./highScores.gif" />
-     
-       <form class="form-inline">
-  
-       <button className = "back"><a href="/Game">◀</a></button>
-      
-       <button onClick={() => firebase.auth().signOut()}><img className = "turn" src = "./turn-on.png" /></button>
-             
-        </form>
-      </nav></Nav>
-      
-        <Container fluid>
 
-      <Row>
-      <Col size="md-4"><img className = "spider" src = "./spider.jpg" /></Col>
-      <Col size="md-1"/>
-        <Col size="md-5">
-   
+           <div className="nav">
+           <AppBar style={{ background: '#2E3B55' }} position="static">
+        <Toolbar>
+       
+          <Typography variant="h6" color="inherit" className="grow">
+          <Button onClick={this.musicToggle}><img className = "music" src = "./music-player.png" /></Button>
+          <a  href="/">
+        Memory Game
+     </a>
+     <img className = "high" src = "./highScores.gif" />
+          </Typography> 
+     <div className= "signOut">
+          <Grid container justify="center" alignItems="center">
+     <Button className = "back"><a href="/Game">◀◀◀</a> </Button>
+      <Avatar alt="" src={firebase.auth().currentUser.photoURL} />
+          <Button onClick={() => firebase.auth().signOut()} className= "signOut" color="inherit">Log Out</Button>
+          </Grid> </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+    <Wr>
+        
           {this.state.scores.length ? (
             <List>
               {this.state.scores.map(score => {
                 return (
 
+                  // <marquee behavior="scroll" direction="up" scrollamount="1">
                   <marquee behavior="scroll" direction="up" scrollamount="1">
-                    <a href={"/books/" + score._id}>
+                  
                       <strong>
+                        
                         {score.username} {score.score}
                       </strong>
-                    </a>
-                  </marquee>
-  
+                 
+
+                   </marquee>
+                   
                 );
               })}
             </List>
@@ -130,10 +138,8 @@ class Scores extends Component {
               <h1>No Results to Display</h1>
             )}
  
-    </Col>
-    <Col size="md-2"/>
-     </Row>
-        </Container>
+   
+ </Wr>
       </Wrapper>
     );
   }

@@ -4,13 +4,18 @@ import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Home,Game,Scores} from "./pages/Scores";
-import Nav from "./components/Nav";
+import Wrap  from "../src/components/wrap";
 
 
-firebase.initializeApp({
-  apiKey: "AIzaSyD0Nf7DI_LR20Xy9_uqCIYBMaFL_1AWaOM",
-  authDomain: "my-1st-firebase-user-auth.firebaseapp.com",
+var  config =({
+  apiKey: "AIzaSyBuiLxMFiSJImCr9v2JYP5AUM_IEbnU8QY",
+  authDomain: "memory-game-a1fa3.firebaseapp.com",
+  databaseURL: "https://memory-game-a1fa3.firebaseio.com",
+  projectId: "memory-game-a1fa3",
+  storageBucket: "memory-game-a1fa3.appspot.com",
+  messagingSenderId: "264407920543"
 })
+firebase.initializeApp(config);
 
 class App extends Component {
   state = { isSignedIn: false }
@@ -18,9 +23,9 @@ class App extends Component {
     signInFlow: "popup",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID
+      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      // firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     callbacks: {
       signInSuccess: () => false
@@ -36,17 +41,14 @@ class App extends Component {
 
   render() {
     return (
+      <Wrap>
       <div className="App">
         {this.state.isSignedIn ? (
           <span>
          
           <Router>
           <div>
-            <Nav />
-          
-            {/* <Scores /> */}
             <Switch>
-         
               <Route exact path="/" component={Home} />
               <Route path="/Game" component={Game} />
               <Route path="/Scores" component={Scores} />
@@ -62,9 +64,9 @@ class App extends Component {
           />
         )}
       </div>
+      </Wrap>
     )
   }
 }
-
 
 export default App;
